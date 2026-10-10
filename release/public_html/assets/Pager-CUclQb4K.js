@@ -1,0 +1,16 @@
+import{c as u,j as s}from"./index-LQyk_Uxc.js";import{r as d}from"./react-T8GDKSqO.js";import{C as j}from"./chevron-right-DZOi9bkb.js";/**
+ * @license lucide-react v0.468.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const g=u("ChevronLeft",[["path",{d:"m15 18-6-6 6-6",key:"1wnfg3"}]]);/**
+ * @license lucide-react v0.468.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const b=u("ChevronsLeft",[["path",{d:"m11 17-5-5 5-5",key:"13zhaf"}],["path",{d:"m18 17-5-5 5-5",key:"h8a8et"}]]);/**
+ * @license lucide-react v0.468.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const N=u("ChevronsRight",[["path",{d:"m6 17 5-5-5-5",key:"xnjwq"}],["path",{d:"m13 17 5-5-5-5",key:"17xmmf"}]]);function v(a,e){if(e<=7)return Array.from({length:e},(r,n)=>n+1);const c=[...new Set([1,2,e-1,e,a-1,a,a+1])].filter(r=>r>=1&&r<=e).sort((r,n)=>r-n),i=[];return c.forEach((r,n)=>{n&&r-c[n-1]>1&&i.push("…"),i.push(r)}),i}function L({total:a,page:e,pageSize:h,onPage:c,onPageSize:i,sizes:r=[10,25,50,100],label:n="items"}){const l=h===0?Math.max(a,1):h,o=Math.max(1,Math.ceil(a/l)),m=a===0?0:(e-1)*l+1,x=Math.min(a,e*l),p=d.useMemo(()=>v(e,o),[e,o]);return a<=Math.min(...r.filter(t=>t>0))?a?s.jsx("div",{className:"pager",children:s.jsxs("span",{children:[a.toLocaleString()," ",n]})}):null:s.jsxs("nav",{className:"pager2","aria-label":"Pagination",children:[s.jsxs("span",{className:"pager-range",children:["Showing ",s.jsxs("b",{children:[m.toLocaleString(),"–",x.toLocaleString()]})," of ",s.jsx("b",{children:a.toLocaleString()})," ",n]}),s.jsxs("div",{className:"pager-controls",children:[s.jsx("button",{className:"pg",onClick:()=>c(1),disabled:e<=1,"aria-label":"First page",children:s.jsx(b,{size:16})}),s.jsx("button",{className:"pg",onClick:()=>c(e-1),disabled:e<=1,"aria-label":"Previous page",children:s.jsx(g,{size:16})}),s.jsx("span",{className:"pg-nums",children:p.map((t,f)=>t==="…"?s.jsx("span",{className:"pg-gap",children:"…"},`e${f}`):s.jsx("button",{className:`pg ${t===e?"on":""}`,onClick:()=>c(t),"aria-current":t===e?"page":void 0,"aria-label":`Page ${t}`,children:t},t))}),s.jsxs("span",{className:"pg-compact",children:["Page ",e," of ",o]}),s.jsx("button",{className:"pg",onClick:()=>c(e+1),disabled:e>=o,"aria-label":"Next page",children:s.jsx(j,{size:16})}),s.jsx("button",{className:"pg",onClick:()=>c(o),disabled:e>=o,"aria-label":"Last page",children:s.jsx(N,{size:16})})]}),i&&s.jsxs("label",{className:"pager-size",children:[s.jsx("span",{children:"Rows"}),s.jsx("select",{className:"input compact",value:h,onChange:t=>i(Number(t.target.value)),"aria-label":"Rows per page",children:r.map(t=>s.jsx("option",{value:t,children:t===0?"All":t},t))})]})]})}function w(a,e=25){const[h,c]=d.useState(1),[i,r]=d.useState(e),n=a.length,l=i===0?Math.max(n,1):i,o=Math.max(1,Math.ceil(n/l));d.useEffect(()=>{c(1)},[n,i]);const m=Math.min(h,o);return{slice:d.useMemo(()=>a.slice((m-1)*l,m*l),[a,m,l]),pagerProps:{total:n,page:m,pageSize:i,onPage:c,onPageSize:r}}}export{L as P,w as u};

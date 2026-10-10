@@ -1,0 +1,28 @@
+Options -Indexes
+AddType application/manifest+json .webmanifest
+
+# Baseline security headers for every response (pages, assets and the API)
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+    Header always unset X-Powered-By
+    # Content-Security-Policy: scripts only from this site (no inline scripts); fonts from Google Fonts; map tiles from
+    # OpenStreetMap; everything else same-origin. frame-ancestors blocks clickjacking.
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://tile.openstreetmap.org https://*.tile.openstreetmap.org; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+</IfModule>
+RewriteEngine On
+RewriteBase /CDIMS/
+
+# Never serve backend internals or tooling
+RewriteRule ^(config|includes|frontend|cron|storage|deploy|scripts|tests|docs|release|setup\.php|install\.php|projectinfo\.md|LOGIN-DETAILS\.md|README\.md|DEPLOYMENT\.md) - [F,L]
+RewriteRule (^|/)\.(env|git|cdims)  - [F,L]
+
+# API and built assets are handled as-is
+RewriteRule ^(api|dist)/ - [L]
+
+# Serve built files from dist/, everything else falls back to the React app
+RewriteCond %{DOCUMENT_ROOT}/CDIMS/dist/$1 -f
+RewriteRule ^(.+)$ dist/$1 [L]
+RewriteRule ^ dist/index.html [L]

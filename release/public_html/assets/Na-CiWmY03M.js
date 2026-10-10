@@ -1,0 +1,1 @@
+import{j as r}from"./index-LQyk_Uxc.js";function t({label:n="No data"}){return r.jsx("span",{className:"na",title:"Not recorded: no reading exists for this value",children:n})}function e({value:n,unit:s=""}){return n==null||n===""||Number.isNaN(n)?r.jsx(t,{label:"n/a"}):r.jsxs(r.Fragment,{children:[n,s]})}export{t as N,e as V};
